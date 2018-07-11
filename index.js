@@ -7,7 +7,7 @@ module.exports = {
     this._super.included(app);
 
     // Import unminified css and js
-    var vendor = this.treePaths.vendor;
+    let vendor = this.treePaths.vendor;
     app.import(`${vendor}/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js`);
     app.import(`${vendor}/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css`);
 
