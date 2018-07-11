@@ -7,8 +7,34 @@ module.exports = {
     this._super.included(app);
 
     // Import unminified css and js
-    let basePath = 'node_modules/eonasdan-bootstrap-datetimepicker';
-    app.import(`${basePath}/build/css/bootstrap-datetimepicker.css`);
-    app.import(`${basePath}/src/js/bootstrap-datetimepicker.js`);
+    var vendor = this.treePaths.vendor;
+    app.import(`${vendor}/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js`);
+    app.import(`${vendor}/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css`);
+
+  },
+
+  treeForVendor: function(vendorTree) {
+    let Funnel = require('broccoli-funnel');
+    let map = require('broccoli-stew').map;
+    let mergeTrees = require('broccoli-merge-trees');
+
+    let trees = [];
+
+    if (vendorTree) {
+      trees.push(vendorTree);
+    }
+
+    trees.push(
+      new Funnel('node_modules/eonasdan-bootstrap-datetimepicker/build', {
+        destDir: '/bootstrap-datetimepicker'
+      })
+    );
+
+    return map(mergeTrees(trees), (content, relativePath) => {
+      if (relativePath.match(/\.js$/i)) {
+        return `if (typeof FastBoot === 'undefined') { ${content} }`;
+      }
+      return content;
+    });
   }
 };
