@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-bootstrap-datetimepicker',
+  name: require('./package').name,
 
   included: function(app) {
     this._super.included(app);
@@ -25,7 +25,7 @@ module.exports = {
     }
 
     trees.push(
-      new Funnel('node_modules/eonasdan-bootstrap-datetimepicker/build', {
+      new Funnel('node_modules/btecu-eonasdan-bootstrap-datetimepicker/build', {
         destDir: '/bootstrap-datetimepicker'
       })
     );

@@ -5,7 +5,7 @@ It uses [bootstrap-datetimepicker](https://github.com/Eonasdan/bootstrap-datetim
 
 
 ## Requirements
-* Node.js 6, 8 or 10
+* Node.js 8, 10 or 12
 * Bootstrap 3
 * Ember 3+
 
@@ -96,6 +96,20 @@ Disables selection of days in the array, e.g. sundays.
 
 
 
+### disabled
+
+Default: `false`
+
+Accepts: `boolean`
+
+```handlebars
+{{bs-datetimepicker disabled=disabled}}
+```
+
+Disables the input element.
+
+
+
 #### disabledDates / enabledDates
 
 Default: `false`
@@ -108,6 +122,8 @@ Accepts: `array` of [`date`, `moment`, `string`]
 ```
 
 Disables / enables selection of dates in the array, e.g. holidays.
+
+When updating the value, the array should be of type `date`.
 
 
 
@@ -123,6 +139,21 @@ Accepts: `array` of [`number`]
 ```
 
 Disables / enables selection of hours in the array, affecting all days.
+
+
+
+#### extraFormats
+
+Default: `false`
+
+Accepts: `array` of [`string`]
+
+```handlebars
+{{bs-datetimepicker date=myDate extraFormats=extraFormats}}
+```
+
+Allows for several input formats to be valid. Accepts an array of valid input
+moment format options.
 
 
 
